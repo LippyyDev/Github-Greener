@@ -29,3 +29,4 @@
 - [ ] Review kode modul 2025-12-31
 - [ ] Review kode modul 2025-12-31
 - [x] Bersihkan dead code (2025-11-01)
+- [ ] Optimalkan query yang lambat
