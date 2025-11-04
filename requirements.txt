@@ -1,4 +1,4 @@
-requests==2.32.31
+requests==2.32.88
 urllib3==2.1.0
 chardet==5.2.0
 certifi==2024.8.{rnd}
