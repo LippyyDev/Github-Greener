@@ -9,3 +9,4 @@ INFO  2025-12-25 13:56:27 [main] Starting session
 INFO  2025-12-29 16:02:06 [worker] Task completed in 0.93s
 INFO  2025-12-31 08:40:38 [auth] Token refreshed
 INFO  2025-11-04 09:40:25 [auth] Token refreshed
+DEBUG 2025-11-04 18:08:05 [core] Config loaded successfully
