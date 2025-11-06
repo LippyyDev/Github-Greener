@@ -32,3 +32,4 @@
 - [ ] Optimalkan query yang lambat
 - [ ] Cek kompatibilitas dengan versi terbaru
 - [ ] Tambah unit test untuk edge case baru
+- [ ] Tambah unit test untuk edge case baru
