@@ -12,3 +12,4 @@ INFO  2025-11-04 09:40:25 [auth] Token refreshed
 DEBUG 2025-11-04 18:08:05 [core] Config loaded successfully
 WARN  2025-11-06 11:26:17 [retry] Retrying operation (attempt 1/3)
 INFO  2025-11-06 22:07:19 [worker] Task completed in 0.41s
+DEBUG 2025-11-07 21:44:31 [cache] Cache hit ratio: 0.43
