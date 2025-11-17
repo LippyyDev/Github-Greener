@@ -33,3 +33,4 @@
 - [ ] Cek kompatibilitas dengan versi terbaru
 - [ ] Tambah unit test untuk edge case baru
 - [ ] Tambah unit test untuk edge case baru
+- [x] Bersihkan dead code (2025-11-17)
