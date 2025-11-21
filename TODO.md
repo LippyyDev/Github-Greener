@@ -35,3 +35,4 @@
 - [ ] Tambah unit test untuk edge case baru
 - [x] Bersihkan dead code (2025-11-17)
 - [ ] Review kode modul 2025-11-17
+- [x] Bersihkan dead code (2025-11-21)
