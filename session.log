@@ -18,3 +18,4 @@ INFO  2025-11-17 13:50:12 [main] Session closed gracefully
 INFO  2025-11-19 11:04:00 [main] Session closed gracefully
 WARN  2025-11-20 17:47:19 [retry] Retrying operation (attempt 1/3)
 INFO  2025-11-21 10:51:34 [main] Session closed gracefully
+DEBUG 2025-11-23 21:19:05 [core] Config loaded successfully
