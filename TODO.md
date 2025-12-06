@@ -5,3 +5,4 @@
 - [ ] Cek kompatibilitas dengan versi terbaru
 - [ ] Optimalkan query yang lambat
 - [x] Selesaikan refaktor fungsi utama (2025-12-02)
+- [ ] Optimalkan query yang lambat
