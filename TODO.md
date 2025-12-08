@@ -8,3 +8,4 @@
 - [ ] Optimalkan query yang lambat
 - [ ] Tambah unit test untuk edge case baru
 - [ ] Optimalkan query yang lambat
+- [ ] Optimalkan query yang lambat
