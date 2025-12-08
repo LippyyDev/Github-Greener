@@ -7,3 +7,4 @@
 - [x] Selesaikan refaktor fungsi utama (2025-12-02)
 - [ ] Optimalkan query yang lambat
 - [ ] Tambah unit test untuk edge case baru
+- [ ] Optimalkan query yang lambat
