@@ -9,3 +9,4 @@
 - [ ] Tambah unit test untuk edge case baru
 - [ ] Optimalkan query yang lambat
 - [ ] Optimalkan query yang lambat
+- [ ] Review kode modul 2025-12-09
