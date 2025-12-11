@@ -13,3 +13,4 @@
 - [x] Update dokumentasi inline (2025-12-09)
 - [x] Update dokumentasi inline (2025-12-11)
 - [ ] Optimalkan query yang lambat
+- [x] Selesaikan refaktor fungsi utama (2025-12-11)
