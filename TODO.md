@@ -16,3 +16,4 @@
 - [x] Selesaikan refaktor fungsi utama (2025-12-11)
 - [ ] Tambah unit test untuk edge case baru
 - [x] Update dokumentasi inline (2025-12-13)
+- [ ] Cek kompatibilitas dengan versi terbaru
