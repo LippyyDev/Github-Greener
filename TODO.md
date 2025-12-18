@@ -18,3 +18,4 @@
 - [x] Update dokumentasi inline (2025-12-13)
 - [ ] Cek kompatibilitas dengan versi terbaru
 - [ ] Optimalkan query yang lambat
+- [ ] Cek kompatibilitas dengan versi terbaru
