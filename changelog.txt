@@ -43,3 +43,4 @@
 [2025-12-15 14:04:40] Pembersihan kode lama
 [2025-12-15 19:39:28] Penyesuaian error handling pada edge case
 [2025-12-16 11:50:14] Perbaikan kecil pada modul utama
+[2025-12-19 16:39:20] Penyesuaian output format
