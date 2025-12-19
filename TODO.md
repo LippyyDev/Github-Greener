@@ -19,3 +19,4 @@
 - [ ] Cek kompatibilitas dengan versi terbaru
 - [ ] Optimalkan query yang lambat
 - [ ] Cek kompatibilitas dengan versi terbaru
+- [ ] Optimalkan query yang lambat
