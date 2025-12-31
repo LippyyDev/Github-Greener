@@ -26,3 +26,4 @@
 - [x] Bersihkan dead code (2025-12-28)
 - [ ] Optimalkan query yang lambat
 - [x] Selesaikan refaktor fungsi utama (2025-12-30)
+- [ ] Review kode modul 2025-12-31
