@@ -27,3 +27,4 @@
 - [ ] Optimalkan query yang lambat
 - [x] Selesaikan refaktor fungsi utama (2025-12-30)
 - [ ] Review kode modul 2025-12-31
+- [ ] Review kode modul 2025-12-31
