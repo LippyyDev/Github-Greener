@@ -1,49 +1,45 @@
-# 🌿 GitHub Auto Contribute
+# 🌿 GitHub Greener
 
-Program Python untuk otomatis membuat kontribusi di GitHub contribution graph.
+> Auto GitHub Contribution Tool — buat contribution graph kamu selalu hijau!
 
-## 📋 Cara Penggunaan
+---
 
-### 1. Persiapan (lakukan sekali saja)
+## 🚀 Versi 1.0
 
-Pastikan folder ini sudah terhubung ke GitHub:
+### ✨ Fitur
+
+| Fitur | Keterangan |
+|---|---|
+| 🔍 **Deteksi Git Otomatis** | Cek apakah folder sudah jadi git repo, ada remote, dan user git sudah dikonfigurasi sebelum mulai |
+| 🔢 **Pilih Jumlah Contribute** | User bebas input berapa commit yang ingin dibuat |
+| 🗂️ **Multi-File Target** | Setiap commit memodifikasi 1–2 file secara acak (`data.txt`, `notes.md`, `changelog.txt`, `config.ini`) agar terlihat natural |
+| 💬 **Pesan Commit Natural** | 40+ variasi pesan commit (`fix:`, `refactor:`, `docs:`, `chore:`, `feat:`) dipilih acak, tidak berulang berturut-turut |
+| 📊 **Progress Bar** | Tampilan progress bar berwarna real-time saat proses commit berlangsung |
+| 🎨 **UI ASCII Art** | Tampilan CMD premium dengan banner ASCII, warna ANSI, animasi spinner, dan box notifikasi |
+| 📤 **Push Otomatis** | Setelah commit selesai, ditawarkan untuk langsung push ke GitHub |
+| 🖱️ **1-Klik Jalankan** | File `Jalankan.bat` untuk langsung buka CMD dan jalankan program tanpa perlu terminal manual |
+| 🔒 **Source Code Terenkripsi** | Didistribusikan sebagai `.exe` (PyInstaller) — source code tidak terlihat di GitHub |
+
+### 📦 Download
+
+Unduh `workspace-utils.exe` dan `Jalankan.bat`, lalu double-klik `Jalankan.bat`.
+
+### ⚙️ Persiapan (sekali saja)
 
 ```bash
 git init
 git remote add origin https://github.com/username/nama-repo.git
-```
-
-Pastikan git user sudah dikonfigurasi:
-
-```bash
 git config --global user.name "Nama Kamu"
 git config --global user.email "email@kamu.com"
 ```
 
-### 2. Jalankan Program
+---
 
-```bash
-python auto_contribute.py
-```
+## 🗺️ Roadmap
 
-### 3. Ikuti Instruksi
+- **v1.0** ✅ — Rilis pertama dengan fitur dasar
+- **v2.0** 🔜 — Fitur lanjutan *(coming soon)*
 
-Program akan:
-1. ✅ Mengecek apakah folder terhubung ke git
-2. ✅ Mengecek remote (origin) dan konfigurasi user
-3. 🔢 Meminta input jumlah contribute yang diinginkan
-4. 🚀 Melakukan commit sebanyak yang dipilih
-5. 📤 Menawarkan push ke GitHub
+---
 
-## 📁 File
-
-| File | Keterangan |
-|------|------------|
-| `auto_contribute.py` | Script utama |
-| `data.txt` | File yang dimodifikasi setiap commit |
-
-## ⚠️ Catatan
-
-- Setiap commit memodifikasi `data.txt` dengan timestamp unik
-- Contribution graph GitHub diperbarui setelah push berhasil
-- Pastikan repo GitHub sudah dibuat sebelum push
+*by LippyyDev*
