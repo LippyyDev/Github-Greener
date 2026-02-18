@@ -1,0 +1,16 @@
+# ── Source code Python (simpan lokal saja) ──
+auto_contribute.py
+
+# ── PyInstaller build folder (tidak perlu di-push) ──
+build/
+dist/
+*.spec
+
+# ── Python cache ──
+__pycache__/
+*.pyc
+*.pyo
+
+# ── Virtual environment ──
+venv/
+env/
