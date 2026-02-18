@@ -2,6 +2,7 @@ import subprocess
 import sys
 import os
 import time
+import random
 from datetime import datetime
 
 
@@ -24,7 +25,6 @@ class C:
 
 
 def enable_ansi():
-    """Aktifkan ANSI escape di Windows CMD."""
     if sys.platform == "win32":
         import ctypes
         kernel32 = ctypes.windll.kernel32
@@ -56,20 +56,155 @@ BANNER = f"""
 {C.RESET}"""
 
 TAGLINE = f"  {C.DIM}{C.WHITE}🌿  Auto GitHub Contribution Tool  |  by LippyyDev{C.RESET}"
-
 DIVIDER_THICK = f"{C.DIM}{C.GREEN}  {'═' * 60}{C.RESET}"
 DIVIDER_THIN  = f"{C.DIM}{C.CYAN}  {'─' * 60}{C.RESET}"
 
 
 # ─────────────────────────────────────────────
-#  HELPER FUNCTIONS
+#  PESAN COMMIT NATURAL (ANTI-SPAM)
+# ─────────────────────────────────────────────
+COMMIT_MESSAGES = [
+    "fix: perbaiki logika validasi input",
+    "refactor: sederhanakan struktur kode",
+    "docs: perbarui catatan penggunaan",
+    "chore: bersihkan kode yang tidak terpakai",
+    "style: rapikan indentasi dan spasi",
+    "fix: tangani edge case pada parsing data",
+    "feat: tambah pengecekan kondisi awal",
+    "refactor: pisahkan fungsi agar lebih modular",
+    "docs: tambah komentar penjelasan fungsi",
+    "chore: update dependensi minor",
+    "fix: perbaiki typo pada pesan error",
+    "style: sesuaikan format output",
+    "feat: optimalkan performa loop utama",
+    "refactor: ganti nama variabel agar lebih deskriptif",
+    "docs: perbarui README dengan contoh terbaru",
+    "fix: atasi bug saat file kosong",
+    "chore: hapus debug log yang tertinggal",
+    "feat: tambah penanganan exception lebih baik",
+    "style: konsistenkan penggunaan tanda kutip",
+    "refactor: ekstrak konstanta ke bagian atas file",
+    "fix: perbaiki kondisi batas pada iterasi",
+    "docs: tambah deskripsi parameter fungsi",
+    "chore: reorganisasi struktur folder",
+    "feat: tambah fallback jika data tidak tersedia",
+    "fix: koreksi urutan operasi pada kalkulasi",
+    "refactor: kurangi duplikasi kode",
+    "style: tambah baris kosong antar blok logika",
+    "docs: perbaiki ejaan pada komentar",
+    "chore: sinkronisasi konfigurasi lokal",
+    "feat: tingkatkan keterbacaan output",
+    "fix: perbaiki penanganan karakter spesial",
+    "refactor: gunakan list comprehension",
+    "docs: tambah contoh penggunaan di header",
+    "chore: perbarui .gitignore",
+    "fix: stabilkan hasil saat input tidak terduga",
+    "feat: tambah pesan informatif saat proses selesai",
+    "style: seragamkan panjang baris maksimum",
+    "refactor: pisahkan konfigurasi dari logika utama",
+    "docs: lengkapi docstring fungsi helper",
+    "chore: bersihkan file sementara",
+]
+
+# ─────────────────────────────────────────────
+#  FILE YANG DIMODIFIKASI (ANTI-SPAM)
+# ─────────────────────────────────────────────
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+TARGET_FILES = {
+    "data.txt": {
+        "mode": "append",
+        "templates": [
+            "session: {ts} | status: aktif\n",
+            "log [{ts}]: proses selesai tanpa error\n",
+            "entry {ts} — operasi berhasil dijalankan\n",
+            "[{ts}] checkpoint tercapai\n",
+            "record: {ts} | hasil: valid\n",
+        ],
+    },
+    "notes.md": {
+        "mode": "append",
+        "templates": [
+            "- [{ts}] Catatan sesi: semua berjalan normal\n",
+            "- [{ts}] Review: tidak ada perubahan signifikan\n",
+            "- [{ts}] Update kecil pada alur kerja\n",
+            "- [{ts}] Penyesuaian minor pada konfigurasi\n",
+            "- [{ts}] Pengecekan rutin selesai\n",
+        ],
+    },
+    "changelog.txt": {
+        "mode": "append",
+        "templates": [
+            "[{ts}] Perbaikan kecil pada modul utama\n",
+            "[{ts}] Refaktor bagian validasi\n",
+            "[{ts}] Optimasi performa minor\n",
+            "[{ts}] Penyesuaian output format\n",
+            "[{ts}] Pembersihan kode lama\n",
+        ],
+    },
+    "config.ini": {
+        "mode": "overwrite_section",
+        "templates": [
+            "[settings]\nlast_run = {ts}\nstatus = ok\nmode = auto\n",
+            "[settings]\nlast_run = {ts}\nstatus = success\nmode = normal\n",
+            "[settings]\nlast_run = {ts}\nstatus = completed\nmode = standard\n",
+        ],
+    },
+}
+
+
+def init_target_files():
+    """Buat file-file target jika belum ada."""
+    defaults = {
+        "data.txt":     "# Data Log\n",
+        "notes.md":     "# Catatan Proyek\n\n",
+        "changelog.txt": "# Changelog\n\n",
+        "config.ini":   "[settings]\nlast_run = -\nstatus = init\n",
+    }
+    for fname, content in defaults.items():
+        fpath = os.path.join(BASE_DIR, fname)
+        if not os.path.exists(fpath):
+            with open(fpath, "w", encoding="utf-8") as f:
+                f.write(content)
+
+
+def modify_random_file(ts: str) -> list[str]:
+    """
+    Pilih 1–2 file secara acak, modifikasi isinya,
+    kembalikan daftar nama file yang diubah.
+    """
+    # Pilih 1 atau 2 file secara acak
+    count = random.randint(1, 2)
+    chosen = random.sample(list(TARGET_FILES.keys()), count)
+    modified = []
+
+    for fname in chosen:
+        cfg   = TARGET_FILES[fname]
+        fpath = os.path.join(BASE_DIR, fname)
+        tmpl  = random.choice(cfg["templates"])
+        text  = tmpl.replace("{ts}", ts)
+
+        if cfg["mode"] == "append":
+            with open(fpath, "a", encoding="utf-8") as f:
+                f.write(text)
+        elif cfg["mode"] == "overwrite_section":
+            with open(fpath, "w", encoding="utf-8") as f:
+                f.write(text)
+
+        modified.append(fname)
+
+    return modified
+
+
+# ─────────────────────────────────────────────
+#  GIT HELPERS
 # ─────────────────────────────────────────────
 def run_git(args):
     result = subprocess.run(
         ["git"] + args,
         capture_output=True,
         text=True,
-        cwd=os.path.dirname(os.path.abspath(__file__)),
+        cwd=BASE_DIR,
     )
     return result.returncode, result.stdout.strip(), result.stderr.strip()
 
@@ -88,6 +223,9 @@ def check_git_user():
     return code_n == 0 and bool(name) and code_e == 0 and bool(email), name, email
 
 
+# ─────────────────────────────────────────────
+#  UI HELPERS
+# ─────────────────────────────────────────────
 def status_row(label, ok, detail=""):
     icon  = f"{C.GREEN}✔{C.RESET}" if ok else f"{C.RED}✘{C.RESET}"
     badge = f"{C.BG_GREEN}{C.BOLD}  OK  {C.RESET}" if ok else f"\033[41m{C.BOLD}  !!  {C.RESET}"
@@ -114,10 +252,14 @@ def progress_bar(current, total, width=40):
 
 
 def box(lines, color=C.CYAN):
-    w = max(len(l) for l in lines) + 4
+    # Strip ANSI untuk hitung lebar asli
+    import re
+    ansi_escape = re.compile(r'\033\[[0-9;]*m')
+    w = max(len(ansi_escape.sub('', l)) for l in lines) + 4
     print(f"\n  {color}╔{'═' * w}╗{C.RESET}")
     for l in lines:
-        pad = w - len(l) - 2
+        clean_len = len(ansi_escape.sub('', l))
+        pad = w - clean_len - 2
         print(f"  {color}║{C.RESET}  {l}{' ' * pad}  {color}║{C.RESET}")
     print(f"  {color}╚{'═' * w}╝{C.RESET}\n")
 
@@ -129,7 +271,6 @@ def main():
     enable_ansi()
     cls()
 
-    # ── Banner ────────────────────────────────
     print(BANNER)
     print(TAGLINE)
     print()
@@ -145,7 +286,7 @@ def main():
 
     is_repo = check_git_repo()
     status_row("Git Repository", is_repo,
-               "folder ini adalah git repo" if is_repo else "BUKAN git repo — jalankan: git init")
+               "folder ini adalah git repo" if is_repo else "BUKAN git repo")
 
     if not is_repo:
         box([
@@ -184,8 +325,11 @@ def main():
     if not has_remote:
         box([
             "⚠️   Tidak ada remote. Commit akan disimpan lokal.",
-            "   Hubungkan dulu: git remote add origin <URL>",
+            "   Hubungkan: git remote add origin <URL>",
         ], C.YELLOW)
+
+    # ── Inisialisasi file target ───────────────
+    init_target_files()
 
     # ── Input jumlah commit ───────────────────
     print(DIVIDER_THICK)
@@ -214,24 +358,30 @@ def main():
     print()
 
     # ── Loop commit ───────────────────────────
-    data_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.txt")
     berhasil = 0
     gagal    = 0
+    used_msgs = []
 
     for i in range(1, jumlah + 1):
-        timestamp  = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        entry      = f"[{timestamp}] Contribute #{i}\n"
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        with open(data_file, "a", encoding="utf-8") as f:
-            f.write(entry)
+        # Modifikasi file secara acak
+        modified_files = modify_random_file(timestamp)
 
-        code_add, _, err_add = run_git(["add", "data.txt"])
+        # git add file yang dimodifikasi
+        code_add, _, err_add = run_git(["add"] + modified_files)
         if code_add != 0:
             print(f"\n  {C.RED}✘  [{i}/{jumlah}] git add gagal: {err_add}{C.RESET}")
             gagal += 1
             continue
 
-        commit_msg = f"contribute: update #{i} - {timestamp}"
+        # Pilih pesan commit natural, hindari duplikat berturut-turut
+        available = [m for m in COMMIT_MESSAGES if m not in used_msgs[-3:]]
+        if not available:
+            available = COMMIT_MESSAGES
+        commit_msg = random.choice(available)
+        used_msgs.append(commit_msg)
+
         code_commit, _, err_commit = run_git(["commit", "-m", commit_msg])
         if code_commit != 0:
             print(f"\n  {C.RED}✘  [{i}/{jumlah}] commit gagal: {err_commit}{C.RESET}")
@@ -239,8 +389,9 @@ def main():
             continue
 
         berhasil += 1
-        bar_line = progress_bar(i, jumlah)
-        print(f"\r{bar_line}  {C.DIM}{timestamp}{C.RESET}  ", end="", flush=True)
+        files_str = f"{C.DIM}({', '.join(modified_files)}){C.RESET}"
+        bar_line  = progress_bar(i, jumlah)
+        print(f"\r{bar_line}  {files_str}  ", end="", flush=True)
 
     print(f"\n")
 
@@ -250,16 +401,9 @@ def main():
     print(f"  {C.BOLD}{C.WHITE}📊  HASIL{C.RESET}")
     print(DIVIDER_THIN)
     print()
-
-    summary_lines = [
-        f"✅  Commit Berhasil  :  {C.GREEN}{C.BOLD}{berhasil}{C.RESET}",
-    ]
+    print(f"  {C.GREEN}✔{C.RESET}  Commit Berhasil  :  {C.GREEN}{C.BOLD}{berhasil}{C.RESET}")
     if gagal:
-        summary_lines.append(f"❌  Commit Gagal     :  {C.RED}{C.BOLD}{gagal}{C.RESET}")
-
-    for l in summary_lines:
-        print(f"  {l}")
-
+        print(f"  {C.RED}✘{C.RESET}  Commit Gagal     :  {C.RED}{C.BOLD}{gagal}{C.RESET}")
     print()
 
     # ── Push ──────────────────────────────────
@@ -305,7 +449,7 @@ def main():
         ], C.YELLOW)
 
     print(DIVIDER_THICK)
-    print(f"\n  {C.GREEN}{C.BOLD}�  Terima kasih sudah menggunakan GitHub Greener!{C.RESET}")
+    print(f"\n  {C.GREEN}{C.BOLD}🌿  Terima kasih sudah menggunakan GitHub Greener!{C.RESET}")
     print(f"  {C.DIM}github.com/LippyyDev/Github-Greener{C.RESET}\n")
     print(DIVIDER_THICK)
     print()
